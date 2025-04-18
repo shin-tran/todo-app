@@ -17,4 +17,13 @@
 .main-content {
   background-color: #f0f0f0;
   padding: 30px;
+  flex: 2;
+}
+
+.container {
+  display: flex;
+}
+
+.filter-panel {
+  flex: 1;
 }

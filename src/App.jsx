@@ -59,7 +59,7 @@ function App() {
 
   return (
     <div className="container">
-      <div>Left sidebar</div>
+
       <div className="main-content">
         <input
           ref={inputRef}
