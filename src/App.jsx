@@ -7,21 +7,21 @@ import FilterPanel from "./components/FilterPanel";
 function App() {
   const [todoList, setTodoList] = useState([
     {
-      id: 1,
+      id: "1",
       name: "Đi học thêm",
       isImportant: false,
       isCompleted: true,
       isDeleted: false,
     },
     {
-      id: 2,
+      id: "2",
       name: "Đi học võ",
       isImportant: true,
       isCompleted: false,
       isDeleted: false,
     },
     {
-      id: 3,
+      id: "3",
       name: "Đi ngủ",
       isImportant: false,
       isCompleted: false,
