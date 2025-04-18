@@ -58,39 +58,42 @@ function App() {
   });
 
   return (
-    <div className="container">
-      <input
-        ref={inputRef}
-        type="text"
-        name="add-new-task"
-        placeholder="Add new task"
-        className="task-input"
-        onKeyDown={(e) => {
-          if (e.key === "Enter") {
-            const value = e.target.value;
-            setTodoList([
-              ...todoList,
-              {
-                id: crypto.randomUUID(),
-                name: value,
-                isImportant: false,
-                isCompleted: false,
-              },
-            ]);
-            inputRef.current.value = "";
-          }
-        }}
-      />
-      <div>{todos}</div>
-      {showSidebar && (
-        <Sidebar
-          key={activeTodoItemId}
-          todoItem={activeTodoItem}
-          handleTodoItemChange={handleTodoItemChange}
-          setShowSidebar={setShowSidebar}
+    <>
+      <div className="">Left sidebar</div>
+      <div className="main-container">
+        <input
+          ref={inputRef}
+          type="text"
+          name="add-new-task"
+          placeholder="Add new task"
+          className="task-input"
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              const value = e.target.value;
+              setTodoList([
+                ...todoList,
+                {
+                  id: crypto.randomUUID(),
+                  name: value,
+                  isImportant: false,
+                  isCompleted: false,
+                },
+              ]);
+              inputRef.current.value = "";
+            }
+          }}
         />
-      )}
-    </div>
+        <div>{todos}</div>
+        {showSidebar && (
+          <Sidebar
+            key={activeTodoItemId}
+            todoItem={activeTodoItem}
+            handleTodoItemChange={handleTodoItemChange}
+            setShowSidebar={setShowSidebar}
+          />
+        )}
+      </div>
+    </>
   );
 }
 
