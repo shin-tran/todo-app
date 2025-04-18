@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 import Sidebar from "./components/Sidebar";
+import FilterPanel from "./components/FilterPanel";
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -59,7 +60,7 @@ function App() {
 
   return (
     <div className="container">
-
+      <FilterPanel />
       <div className="main-content">
         <input
           ref={inputRef}
