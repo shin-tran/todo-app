@@ -58,9 +58,9 @@ function App() {
   });
 
   return (
-    <>
-      <div className="">Left sidebar</div>
-      <div className="main-container">
+    <div className="container">
+      <div>Left sidebar</div>
+      <div className="main-content">
         <input
           ref={inputRef}
           type="text"
@@ -93,7 +93,7 @@ function App() {
           />
         )}
       </div>
-    </>
+    </div>
   );
 }
 
