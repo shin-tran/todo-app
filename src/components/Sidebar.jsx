@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Sidebar.css";
+import "../styles/Sidebar.css";
 
 const Sidebar = (props) => {
   const data = props.todoItem;
