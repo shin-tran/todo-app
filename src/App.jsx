@@ -6,10 +6,30 @@ import FilterPanel from "./components/FilterPanel";
 
 function App() {
   const [todoList, setTodoList] = useState([
-    { id: 1, name: "Đi học thêm", isImportant: false, isCompleted: true },
-    { id: 2, name: "Đi học võ", isImportant: true, isCompleted: false },
-    { id: 3, name: "Đi ngủ", isImportant: false, isCompleted: false },
+    {
+      id: 1,
+      name: "Đi học thêm",
+      isImportant: false,
+      isCompleted: true,
+      isDeleted: false,
+    },
+    {
+      id: 2,
+      name: "Đi học võ",
+      isImportant: true,
+      isCompleted: false,
+      isDeleted: false,
+    },
+    {
+      id: 3,
+      name: "Đi ngủ",
+      isImportant: false,
+      isCompleted: false,
+      isDeleted: false,
+    },
   ]);
+
+  const [selectedFilterId, setSelectedFilterId] = useState("all");
 
   const handleCompleteCheckboxChange = (todoId) => {
     const newTodoList = todoList.map((todo) => {
@@ -44,23 +64,41 @@ function App() {
 
   const inputRef = useRef();
 
-  const todos = todoList.map((todo) => {
-    return (
-      <TodoItem
-        id={todo.id}
-        key={todo.id}
-        name={todo.name}
-        isImpostant={todo.isImportant}
-        isCompleted={todo.isCompleted}
-        handleCompleteCheckboxChange={handleCompleteCheckboxChange}
-        handleTodoItemClick={handleTodoItemClick}
-      />
-    );
-  });
+  const filteredTodos = todoList
+    .filter((todo) => {
+      switch (selectedFilterId) {
+        case "all":
+          return true;
+        case "important":
+          return todo.isImportant;
+        case "completed":
+          return todo.isCompleted;
+        case "deleted":
+          return todo.isDeleted;
+        default:
+          return true;
+      }
+    })
+    .map((todo) => {
+      return (
+        <TodoItem
+          id={todo.id}
+          key={todo.id}
+          name={todo.name}
+          isImpostant={todo.isImportant}
+          isCompleted={todo.isCompleted}
+          handleCompleteCheckboxChange={handleCompleteCheckboxChange}
+          handleTodoItemClick={handleTodoItemClick}
+        />
+      );
+    });
 
   return (
     <div className="container">
-      <FilterPanel />
+      <FilterPanel
+        selectedFilterId={selectedFilterId}
+        setSelectedFilterId={setSelectedFilterId}
+      />
       <div className="main-content">
         <input
           ref={inputRef}
@@ -78,13 +116,14 @@ function App() {
                   name: value,
                   isImportant: false,
                   isCompleted: false,
+                  isDeleted: false,
                 },
               ]);
               inputRef.current.value = "";
             }
           }}
         />
-        <div>{todos}</div>
+        <div>{filteredTodos}</div>
         {showSidebar && (
           <Sidebar
             key={activeTodoItemId}

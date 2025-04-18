@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/FilterPanel.css";
 import { CgInbox } from "react-icons/cg";
 import { FaCheckSquare, FaFlag, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-const FilterPanel = () => {
-  const [selectedFilterId, setSelectedFilterId] = useState("all");
-
+const FilterPanel = ({ selectedFilterId, setSelectedFilterId }) => {
   const filterItems = [
     { id: "all", label: "All", icon: <CgInbox color="#fff" /> },
     { id: "important", label: "Important", icon: <FaFlag color="#ffff00" /> },
@@ -30,6 +28,7 @@ const FilterPanel = () => {
                 className={`filter-item ${
                   item.id === selectedFilterId ? "selected" : ""
                 }`}
+                onClick={() => setSelectedFilterId(item.id)}
               >
                 <div className="filter-name">
                   <div>{item.icon}</div>

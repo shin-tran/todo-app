@@ -17,6 +17,7 @@
   justify-content: space-between;
 }
 
-.filter-item.select {
+.filter-item.selected {
   background-color: #0f548c;
+  color: #fff;
 }
