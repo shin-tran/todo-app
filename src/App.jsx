@@ -64,34 +64,20 @@ function App() {
 
   const inputRef = useRef();
 
-  const filteredTodos = todoList
-    .filter((todo) => {
-      switch (selectedFilterId) {
-        case "all":
-          return true;
-        case "important":
-          return todo.isImportant;
-        case "completed":
-          return todo.isCompleted;
-        case "deleted":
-          return todo.isDeleted;
-        default:
-          return true;
-      }
-    })
-    .map((todo) => {
-      return (
-        <TodoItem
-          id={todo.id}
-          key={todo.id}
-          name={todo.name}
-          isImpostant={todo.isImportant}
-          isCompleted={todo.isCompleted}
-          handleCompleteCheckboxChange={handleCompleteCheckboxChange}
-          handleTodoItemClick={handleTodoItemClick}
-        />
-      );
-    });
+  const filteredTodos = todoList.filter((todo) => {
+    switch (selectedFilterId) {
+      case "all":
+        return true;
+      case "important":
+        return todo.isImportant;
+      case "completed":
+        return todo.isCompleted;
+      case "deleted":
+        return todo.isDeleted;
+      default:
+        return true;
+    }
+  });
 
   return (
     <div className="container">
@@ -124,7 +110,21 @@ function App() {
             }
           }}
         />
-        <div>{filteredTodos}</div>
+        <div>
+          {filteredTodos.map((todo) => {
+            return (
+              <TodoItem
+                id={todo.id}
+                key={todo.id}
+                name={todo.name}
+                isImpostant={todo.isImportant}
+                isCompleted={todo.isCompleted}
+                handleCompleteCheckboxChange={handleCompleteCheckboxChange}
+                handleTodoItemClick={handleTodoItemClick}
+              />
+            );
+          })}
+        </div>
         {showSidebar && (
           <Sidebar
             key={activeTodoItemId}

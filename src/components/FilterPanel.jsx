@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useMemo } from "react";
 import "../styles/FilterPanel.css";
 import { CgInbox } from "react-icons/cg";
 import { FaCheckSquare, FaFlag, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
 const FilterPanel = ({ selectedFilterId, setSelectedFilterId, todoList }) => {
-  const countByFilterType = todoList.reduce(
-    (acc, cur) => {
-      let newAcc = { ...acc };
-      if (cur.isCompleted) {
-        newAcc = { ...newAcc, completed: newAcc.completed + 1 };
-      }
-      if (cur.isImportant) {
-        newAcc = { ...newAcc, important: newAcc.important + 1 };
-      }
-      if (cur.isDeleted) {
-        newAcc = { ...newAcc, deleted: newAcc.deleted + 1 };
-      }
-      return newAcc;
-    },
-    { all: todoList.length, important: 0, completed: 0, deleted: 0 }
-  );
+  const countByFilterType = useMemo(() => {
+    return todoList.reduce(
+      (acc, cur) => {
+        let newAcc = { ...acc };
+        if (cur.isCompleted) {
+          newAcc = { ...newAcc, completed: newAcc.completed + 1 };
+        }
+        if (cur.isImportant) {
+          newAcc = { ...newAcc, important: newAcc.important + 1 };
+        }
+        if (cur.isDeleted) {
+          newAcc = { ...newAcc, deleted: newAcc.deleted + 1 };
+        }
+        return newAcc;
+      },
+      { all: todoList.length, important: 0, completed: 0, deleted: 0 }
+    );
+  }, [todoList]);
 
   const filterItems = [
     { id: "all", label: "All", icon: <CgInbox color="#fff" /> },
