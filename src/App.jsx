@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 import Sidebar from "./components/Sidebar";
@@ -64,20 +64,22 @@ function App() {
 
   const inputRef = useRef();
 
-  const filteredTodos = todoList.filter((todo) => {
-    switch (selectedFilterId) {
-      case "all":
-        return true;
-      case "important":
-        return todo.isImportant;
-      case "completed":
-        return todo.isCompleted;
-      case "deleted":
-        return todo.isDeleted;
-      default:
-        return true;
-    }
-  });
+  const filteredTodos = useMemo(() => {
+    return todoList.filter((todo) => {
+      switch (selectedFilterId) {
+        case "all":
+          return true;
+        case "important":
+          return todo.isImportant;
+        case "completed":
+          return todo.isCompleted;
+        case "deleted":
+          return todo.isDeleted;
+        default:
+          return true;
+      }
+    });
+  }, [todoList, selectedFilterId]);
 
   return (
     <div className="container">
