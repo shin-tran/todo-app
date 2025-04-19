@@ -4,7 +4,13 @@ import { CgInbox } from "react-icons/cg";
 import { FaCheckSquare, FaFlag, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
-const FilterPanel = ({ selectedFilterId, setSelectedFilterId, todoList }) => {
+const FilterPanel = ({
+  selectedFilterId,
+  setSelectedFilterId,
+  todoList,
+  searchText,
+  setSearchText,
+}) => {
   const countByFilterType = useMemo(() => {
     return todoList.reduce(
       (acc, cur) => {
@@ -42,6 +48,10 @@ const FilterPanel = ({ selectedFilterId, setSelectedFilterId, todoList }) => {
         name="search-text"
         id="search-text"
         placeholder="Search"
+        value={searchText}
+        onChange={(e) => {
+          setSearchText(e.target.value);
+        }}
       />
       <div className="filter-container">
         <IconContext.Provider value={{ className: "filter-panel-icon" }}>

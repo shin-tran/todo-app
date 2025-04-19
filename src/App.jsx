@@ -29,7 +29,12 @@ function App() {
     },
   ]);
 
+  const inputRef = useRef();
   const [selectedFilterId, setSelectedFilterId] = useState("all");
+  const [activeTodoItemId, setActiveTodoItemId] = useState();
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const activeTodoItem = todoList.find((todo) => todo.id === activeTodoItemId);
 
   const handleCompleteCheckboxChange = (todoId) => {
     const newTodoList = todoList.map((todo) => {
@@ -40,12 +45,6 @@ function App() {
     });
     setTodoList(newTodoList);
   };
-
-  const [activeTodoItemId, setActiveTodoItemId] = useState();
-
-  const activeTodoItem = todoList.find((todo) => todo.id === activeTodoItemId);
-
-  const [showSidebar, setShowSidebar] = useState(false);
 
   const handleTodoItemClick = (todoId) => {
     setShowSidebar(true);
@@ -62,10 +61,11 @@ function App() {
     setTodoList(newTodoList);
   };
 
-  const inputRef = useRef();
-
   const filteredTodos = useMemo(() => {
     return todoList.filter((todo) => {
+      if (!todo.name.includes(searchText)) {
+        return false;
+      }
       switch (selectedFilterId) {
         case "all":
           return true;
@@ -79,7 +79,7 @@ function App() {
           return true;
       }
     });
-  }, [todoList, selectedFilterId]);
+  }, [todoList, selectedFilterId, searchText]);
 
   return (
     <div className="container">
@@ -87,6 +87,8 @@ function App() {
         selectedFilterId={selectedFilterId}
         setSelectedFilterId={setSelectedFilterId}
         todoList={todoList}
+        searchText={searchText}
+        setSearchText={setSearchText}
       />
       <div className="main-content">
         <input
