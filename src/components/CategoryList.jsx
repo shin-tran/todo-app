@@ -1,13 +1,8 @@
 import React from "react";
 import "../styles/CategoryList.css";
+import { categoryItem } from "../constaints";
 
 const CategoryList = () => {
-  const categoryItem = [
-    { id: "personal", label: "Personal" },
-    { id: "company", label: "Company" },
-    { id: "travel", label: "Travel" },
-    { id: "idea", label: "Idea" },
-  ];
   return (
     <>
       <p>Categories</p>

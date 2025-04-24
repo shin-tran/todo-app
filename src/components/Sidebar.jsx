@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/Sidebar.css";
+import { categoryItem } from "../constaints";
 
 const Sidebar = (props) => {
   const data = props.todoItem;
@@ -51,6 +52,18 @@ const Sidebar = (props) => {
               setIsCompleted(!isCompleted);
             }}
           />
+        </div>
+        <div className="sb-form-field">
+          <label htmlFor="sb-category">Category</label>
+          <select id="sb-completed">
+            {categoryItem.map((item) => {
+              return (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </form>
       <div className="sb-footer">
