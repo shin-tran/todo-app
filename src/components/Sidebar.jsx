@@ -7,9 +7,10 @@ const Sidebar = (props) => {
   const [name, setName] = useState(data.name);
   const [isImportant, setIsImportant] = useState(data.isImportant);
   const [isCompleted, setIsCompleted] = useState(data.isCompleted);
+  const [category, setCategory] = useState(data.category);
 
   const handleSave = () => {
-    const newTodo = { ...data, name, isImportant, isCompleted };
+    const newTodo = { ...data, name, isImportant, isCompleted, category };
     props.handleTodoItemChange(newTodo);
     props.setShowSidebar(false);
   };
@@ -55,7 +56,12 @@ const Sidebar = (props) => {
         </div>
         <div className="sb-form-field">
           <label htmlFor="sb-category">Category</label>
-          <select id="sb-completed">
+          <select
+            id="sb-completed"
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+          >
             {categoryItem.map((item) => {
               return (
                 <option key={item.id} value={item.id}>
