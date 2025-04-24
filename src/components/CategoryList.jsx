@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/CategoryList.css";
 
 const CategoryList = () => {
   const categoryItem = [
@@ -13,8 +14,8 @@ const CategoryList = () => {
       <div>
         {categoryItem.map((item) => {
           return (
-            <div key={item.id}>
-              <p>{item.label}</p>
+            <div key={item.id} className="category-item">
+              <p className="category-name">{item.label}</p>
               <p>2</p>
             </div>
           );
