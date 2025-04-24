@@ -5,7 +5,7 @@ const CategoryList = () => {
   const categoryItem = [
     { id: "personal", label: "Personal" },
     { id: "company", label: "Company" },
-    { id: "travel", label: "travel" },
+    { id: "travel", label: "Travel" },
     { id: "idea", label: "Idea" },
   ];
   return (
