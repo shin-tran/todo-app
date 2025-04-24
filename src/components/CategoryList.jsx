@@ -13,7 +13,9 @@ const CategoryList = () => {
           return (
             <div
               key={item.id}
-              className="category-item"
+              className={`category-item ${
+                selectedCategoryId === item.id ? "selected" : ""
+              }`}
               onClick={() => {
                 setSelectedCategoryId(item.id);
               }}
