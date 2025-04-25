@@ -1,4 +1,4 @@
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useMemo } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 import Sidebar from "./components/Sidebar";
@@ -6,40 +6,21 @@ import FilterPanel from "./components/FilterPanel";
 import { AppContext } from "./context/AppContext";
 
 function App() {
-  const [todoList, setTodoList] = useState([
-    {
-      id: "1",
-      name: "Đi học thêm",
-      isImportant: false,
-      isCompleted: true,
-      isDeleted: false,
-      category: "personal",
-    },
-    {
-      id: "2",
-      name: "Đi học võ",
-      isImportant: true,
-      isCompleted: false,
-      isDeleted: false,
-      category: "personal",
-    },
-    {
-      id: "3",
-      name: "Đi ngủ",
-      isImportant: false,
-      isCompleted: false,
-      isDeleted: false,
-      category: "travel",
-    },
-  ]);
-
-  const inputRef = useRef();
-  const [selectedFilterId, setSelectedFilterId] = useState("all");
-  const [activeTodoItemId, setActiveTodoItemId] = useState();
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const activeTodoItem = todoList.find((todo) => todo.id === activeTodoItemId);
-  const { selectedCategoryId } = useContext(AppContext);
+  const {
+    selectedCategoryId,
+    todoList,
+    setTodoList,
+    setShowSidebar,
+    setActiveTodoItemId,
+    searchText,
+    selectedFilterId,
+    setSelectedFilterId,
+    setSearchText,
+    inputRef,
+    showSidebar,
+    activeTodoItem,
+    activeTodoItemId,
+  } = useContext(AppContext);
 
   const handleCompleteCheckboxChange = (todoId) => {
     const newTodoList = todoList.map((todo) => {
