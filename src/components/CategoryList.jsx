@@ -1,10 +1,24 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import "../styles/CategoryList.css";
 import { categoryItem } from "../constaints";
 import { AppContext } from "../context/AppContext";
 
 const CategoryList = () => {
-  const { selectedCategoryId, setSelectedCategoryId } = useContext(AppContext);
+  const { selectedCategoryId, setSelectedCategoryId, todoList } =
+    useContext(AppContext);
+
+  const countByCategory = useMemo(() => {
+    return todoList.reduce(
+      (acc, cur) => ({ ...acc, [cur.category]: acc[cur.category] + 1 }),
+      {
+        personal: 0,
+        company: 0,
+        travel: 0,
+        idea: 0,
+      }
+    );
+  }, [todoList]);
+
   return (
     <>
       <p>Categories</p>
@@ -21,7 +35,7 @@ const CategoryList = () => {
               }}
             >
               <p className="category-name">{item.label}</p>
-              <p>2</p>
+              <p>{countByCategory[item.id]}</p>
             </div>
           );
         })}
