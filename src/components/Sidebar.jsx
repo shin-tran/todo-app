@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Sidebar.css";
 import { categoryItem } from "../constaints";
-import { AppContext } from "../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const Sidebar = (props) => {
-  const {setShowSidebar, activeTodoItem} = useContext(AppContext);
+  const {setShowSidebar, activeTodoItem} = useAppContext;
   const data = activeTodoItem;
   const [name, setName] = useState(data.name);
   const [isImportant, setIsImportant] = useState(data.isImportant);

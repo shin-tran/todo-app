@@ -1,11 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import "../styles/CategoryList.css";
 import { categoryItem } from "../constaints";
-import { AppContext } from "../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const CategoryList = () => {
-  const { selectedCategoryId, setSelectedCategoryId, todoList } =
-    useContext(AppContext);
+  const { selectedCategoryId, setSelectedCategoryId, todoList } = useAppContext;
 
   const countByCategory = useMemo(() => {
     return todoList.reduce(

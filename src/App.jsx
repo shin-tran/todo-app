@@ -1,9 +1,9 @@
-import { useContext, useMemo } from "react";
+import { useMemo } from "react";
 import "./App.css";
 import TodoItem from "./components/TodoItem";
 import Sidebar from "./components/Sidebar";
 import FilterPanel from "./components/FilterPanel";
-import { AppContext } from "./context/AppContext";
+import { useAppContext } from "./context/AppContext";
 
 function App() {
   const {
@@ -17,7 +17,7 @@ function App() {
     inputRef,
     showSidebar,
     activeTodoItemId,
-  } = useContext(AppContext);
+  } = useAppContext;
 
   const handleCompleteCheckboxChange = (todoId) => {
     const newTodoList = todoList.map((todo) => {

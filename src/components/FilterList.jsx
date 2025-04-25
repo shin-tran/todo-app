@@ -1,12 +1,11 @@
-import React, { useContext, useMemo } from "react";
+import React, { useMemo } from "react";
 import { CgInbox } from "react-icons/cg";
 import { FaCheckSquare, FaFlag, FaTrash } from "react-icons/fa";
 import { IconContext } from "react-icons";
-import { AppContext } from "../context/AppContext";
+import { useAppContext } from "../context/AppContext";
 
 const FilterList = () => {
-  const { selectedFilterId, setSelectedFilterId, todoList } =
-    useContext(AppContext);
+  const { selectedFilterId, setSelectedFilterId, todoList } = useAppContext;
 
   const countByFilterType = useMemo(() => {
     return todoList.reduce(
