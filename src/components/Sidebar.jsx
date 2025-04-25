@@ -4,7 +4,7 @@ import { categoryItem } from "../constaints";
 import { useAppContext } from "../context/AppContext";
 
 const Sidebar = (props) => {
-  const {setShowSidebar, activeTodoItem} = useAppContext;
+  const {setShowSidebar, activeTodoItem} = useAppContext();
   const data = activeTodoItem;
   const [name, setName] = useState(data.name);
   const [isImportant, setIsImportant] = useState(data.isImportant);

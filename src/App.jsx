@@ -17,7 +17,7 @@ function App() {
     inputRef,
     showSidebar,
     activeTodoItemId,
-  } = useAppContext;
+  } = useAppContext();
 
   const handleCompleteCheckboxChange = (todoId) => {
     const newTodoList = todoList.map((todo) => {

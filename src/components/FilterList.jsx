@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { useAppContext } from "../context/AppContext";
 
 const FilterList = () => {
-  const { selectedFilterId, setSelectedFilterId, todoList } = useAppContext;
+  const { selectedFilterId, setSelectedFilterId, todoList } = useAppContext();
 
   const countByFilterType = useMemo(() => {
     return todoList.reduce(

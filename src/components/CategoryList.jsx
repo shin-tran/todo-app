@@ -4,7 +4,7 @@ import { categoryItem } from "../constaints";
 import { useAppContext } from "../context/AppContext";
 
 const CategoryList = () => {
-  const { selectedCategoryId, setSelectedCategoryId, todoList } = useAppContext;
+  const { selectedCategoryId, setSelectedCategoryId, todoList } = useAppContext();
 
   const countByCategory = useMemo(() => {
     return todoList.reduce(

@@ -4,7 +4,7 @@ import FilterList from "./FilterList";
 import { useAppContext } from "../context/AppContext";
 
 const FilterPanel = () => {
-  const { searchText, setSearchText } = useAppContext;
+  const { searchText, setSearchText } = useAppContext();
   return (
     <div className="filter-panel">
       <input
