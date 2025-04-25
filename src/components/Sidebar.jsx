@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../styles/Sidebar.css";
 import { categoryItem } from "../constaints";
+import { AppContext } from "../context/AppContext";
 
 const Sidebar = (props) => {
-  const data = props.todoItem;
+  const {setShowSidebar, activeTodoItem} = useContext(AppContext);
+  const data = activeTodoItem;
   const [name, setName] = useState(data.name);
   const [isImportant, setIsImportant] = useState(data.isImportant);
   const [isCompleted, setIsCompleted] = useState(data.isCompleted);
@@ -12,7 +14,7 @@ const Sidebar = (props) => {
   const handleSave = () => {
     const newTodo = { ...data, name, isImportant, isCompleted, category };
     props.handleTodoItemChange(newTodo);
-    props.setShowSidebar(false);
+    setShowSidebar(false);
   };
 
   return (

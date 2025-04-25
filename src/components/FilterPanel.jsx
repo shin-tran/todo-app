@@ -1,14 +1,11 @@
+import { useContext } from "react";
 import "../styles/FilterPanel.css";
 import CategoryList from "./CategoryList";
 import FilterList from "./FilterList";
+import { AppContext } from "../context/AppContext";
 
-const FilterPanel = ({
-  selectedFilterId,
-  setSelectedFilterId,
-  todoList,
-  searchText,
-  setSearchText,
-}) => {
+const FilterPanel = () => {
+  const { searchText, setSearchText } = useContext(AppContext);
   return (
     <div className="filter-panel">
       <input
@@ -21,11 +18,7 @@ const FilterPanel = ({
           setSearchText(e.target.value);
         }}
       />
-      <FilterList
-        selectedFilterId={selectedFilterId}
-        setSelectedFilterId={setSelectedFilterId}
-        todoList={todoList}
-      />
+      <FilterList />
       <CategoryList />
     </div>
   );

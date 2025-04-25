@@ -14,11 +14,8 @@ function App() {
     setActiveTodoItemId,
     searchText,
     selectedFilterId,
-    setSelectedFilterId,
-    setSearchText,
     inputRef,
     showSidebar,
-    activeTodoItem,
     activeTodoItemId,
   } = useContext(AppContext);
 
@@ -74,13 +71,7 @@ function App() {
 
   return (
     <div className="container">
-      <FilterPanel
-        selectedFilterId={selectedFilterId}
-        setSelectedFilterId={setSelectedFilterId}
-        todoList={todoList}
-        searchText={searchText}
-        setSearchText={setSearchText}
-      />
+      <FilterPanel />
       <div className="main-content">
         <input
           ref={inputRef}
@@ -124,9 +115,7 @@ function App() {
         {showSidebar && (
           <Sidebar
             key={activeTodoItemId}
-            todoItem={activeTodoItem}
             handleTodoItemChange={handleTodoItemChange}
-            setShowSidebar={setShowSidebar}
           />
         )}
       </div>
